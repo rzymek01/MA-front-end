@@ -1,9 +1,28 @@
 <ion-view view-title="Account">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Email</span>
+        <input type="text" placeholder="email@domain.com" ng-model="user.email">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="user.password">
+      </label>
+      <button class="button button-positive" ng-click="login(user)">
+        Sign in
+      </button>
+      <button class="button button-stable" ng-click="register(user)">
+        Add user
+      </button>
+      <br>
+      <button class="button button-stable" ng-click="logout()">
+        Log out
+      </button>
+    </div>
+    <br>
+    <div>
+      You are currently logged as <b>{{ data.email }}</b>.
+    </div>
   </ion-content>
 </ion-view>

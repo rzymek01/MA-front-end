@@ -1,0 +1,42 @@
+<ion-view view-title="Products">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in products" type="item-text-wrap">
+        <img ng-src="{{chat.picture}}">
+        <h2>{{chat.name}}</h2>
+        <p>Amount: {{chat.amount}}</p>
+
+        <div class="m-actions">
+          <div>
+            <input type="number" ng-model="amount" value="1" min="0" max="99">
+            <button ng-click="inc(chat, amount)">(+)</button>
+            <button ng-click="dec(chat, amount)">(-)</button>
+          </div>
+
+          <div class="m-delete">
+            <button class="button-assertive" ng-click="remove(chat)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <div class="list">
+      <h2>New product</h2>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="Name" ng-model="product.name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Picture (URL)</span>
+        <input type="text" ng-model="product.picture">
+      </label>
+
+      <button ng-click="add(product)" class="button button-positive">
+        Add product
+      </button>
+    </div>
+
+  </ion-content>
+</ion-view>

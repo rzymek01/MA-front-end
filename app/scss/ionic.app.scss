@@ -21,3 +21,19 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+div.m-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+
+  input[type=number] {
+    display: inline-block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+
+  .m-delete {
+    text-align: right;
+  }
+}
+
