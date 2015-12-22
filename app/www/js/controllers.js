@@ -19,6 +19,7 @@ angular.module('starter.controllers', [])
     $scope.products = [];
     $scope.product = {
       name: '',
+      amount: 0,
       picture: 'http://goo.gl/BEnYzV'
     };
 
@@ -47,6 +48,10 @@ angular.module('starter.controllers', [])
       }
       showPopupWithSpinner('Please wait...');
       Chats.update(product, updateSuccess, updateFailure);
+    };
+    $scope.sync = function() {
+      showPopupWithSpinner('Please wait...');
+      Chats.sync(syncSuccess, syncFailure);
     };
 
     //$scope.openPopover = function($event) {
@@ -98,7 +103,6 @@ angular.module('starter.controllers', [])
     };
 
     var addSuccess = function (response) {
-      popup.close();
       Chats.all(getSuccess, getFailure);
       $scope.product.name = '';
     };
@@ -112,7 +116,6 @@ angular.module('starter.controllers', [])
     };
 
     var removeSuccess = function (response) {
-      popup.close();
       Chats.all(getSuccess, getFailure);
     };
     var removeFailure = function (response) {
@@ -125,7 +128,6 @@ angular.module('starter.controllers', [])
     };
 
     var updateSuccess = function (response) {
-      popup.close();
       Chats.all(getSuccess, getFailure);
     };
     var updateFailure = function (response) {
@@ -134,6 +136,18 @@ angular.module('starter.controllers', [])
       var alert = $ionicPopup.alert({
         title: 'Error',
         subTitle: (401 == response.status) ? 'You have to log in' : 'Some error occurs during updating product'
+      });
+    };
+
+    var syncSuccess = function (response) {
+      Chats.all(getSuccess, getFailure);
+    };
+    var syncFailure = function (response) {
+      //@todo: check response, @link https://docs.angularjs.org/api/ng/service/$http
+      popup.close();
+      var alert = $ionicPopup.alert({
+        title: 'Error',
+        subTitle: (401 == response.status) ? 'You have to log in' : 'Some server error occurs during sync'
       });
     };
   })
@@ -170,7 +184,7 @@ angular.module('starter.controllers', [])
     var loginSuccess = function (response) {
       console.info('login successful');
       $scope.loginMsg = 'Login successful';
-      $scope.data.email = $scope.user.email;
+      $scope.data.email = $state.current.data.email;
 
       $scope.user.email = '';
 
@@ -180,6 +194,7 @@ angular.module('starter.controllers', [])
     };
 
     var loginFailure = function (response) {
+      $state.current.data.email = '-';
       console.warn('bad login or password', response.status);
       //@todo: check response, @link https://docs.angularjs.org/api/ng/service/$http
       $scope.loginMsg = 'Bad login or password';
@@ -215,7 +230,7 @@ angular.module('starter.controllers', [])
       showPopupWithSpinner();
       Chats.login(user, loginSuccess, loginFailure);
 
-      this.data.email = '-';
+      //this.data.email = '-';
       this.user.password = '';
     };
     $scope.logout = function () {

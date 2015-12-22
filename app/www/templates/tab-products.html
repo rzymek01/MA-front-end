@@ -1,5 +1,11 @@
 <ion-view view-title="Products">
   <ion-content>
+    <div>
+      <button ng-click="sync()" class="button button-positive">
+        Sync
+      </button>
+    </div>
+
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in products" type="item-text-wrap">
         <img ng-src="{{chat.picture}}">
