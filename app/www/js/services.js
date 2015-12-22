@@ -121,6 +121,9 @@ angular.module('starter.services', [])
         currentUser.hmac = '';
         currentUser.auth = '';
         window.localStorage.setItem(userKey, JSON.stringify(currentUser));
+        window.localStorage.setItem("grocery.data", "{}");
+        token = window.crypto.getRandomValues(new Uint32Array(1))[0];
+        window.localStorage.setItem("grocery.deviceId", token);
         $state.current.data.email = '-';
       },
       login: function (user, successCallback, failureCallback) {
