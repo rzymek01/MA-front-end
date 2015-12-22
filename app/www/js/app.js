@@ -55,8 +55,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         abstract: true,
         templateUrl: 'templates/tabs.html',
         data: {
-          //endpoint: 'https://secure-springs-6529.herokuapp.com/v1/',
-          endpoint: 'http://localhost:3000/v1/',
+          endpoint: 'https://secure-springs-6529.herokuapp.com/v1/',
+          //endpoint: 'http://localhost:3000/v1/',
           hmac: 'WaiuHOe6qKR+YM5wHVhrH5PUUbzuy7lbxzHbMv1I0C8=',
           email: '-',
           deviceId: deviceId
